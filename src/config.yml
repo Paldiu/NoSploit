@@ -1,0 +1,14 @@
+# Installed modules, comment (#) a module to disable it.
+modules:
+ - signs
+ - stripBookJSON
+ - jukeboxes
+ - chestcontents
+ - safehotbar
+ - crashblocks
+ - mobnames
+ - mobrange
+ - chestdrops
+ - levers
+
+    
