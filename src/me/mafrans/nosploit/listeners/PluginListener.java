@@ -75,8 +75,9 @@ public class PluginListener implements Listener
         
         
         // Psuedo-Block crash blocks
-        if(action.equals(Action.RIGHT_CLICK_BLOCK) && inHand.getType().isBlock())
+        if(action.equals(Action.RIGHT_CLICK_BLOCK) && inHand != null && inHand.getType() != Material.AIR)
         {
+            if(!inHand.getType().isBlock()) return;
             if(!isActivated("crashblocks"))
             {
                 return;
