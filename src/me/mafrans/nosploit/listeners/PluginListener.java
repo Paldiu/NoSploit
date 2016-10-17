@@ -14,7 +14,6 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
 import org.bukkit.craftbukkit.v1_10_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -36,6 +35,173 @@ public class PluginListener implements Listener
     private final Main plugin = Main.plugin;
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e)
+    {
+        Player player = e.getPlayer();
+        Action action = e.getAction();
+        ItemStack inHand = player.getItemInHand();
+        Block block = null; 
+        if(action.equals(Action.RIGHT_CLICK_BLOCK)||action.equals(Action.LEFT_CLICK_BLOCK)) 
+        {
+            block = e.getClickedBlock();
+        }
+        
+        // Block crash mobs
+        if(inHand != null && inHand.hasItemMeta() && inHand.getItemMeta().hasDisplayName() && inHand.getItemMeta().getDisplayName().length() > 100)
+        {
+            if(!isActivated("mobnames"))
+            {
+                return;
+            }
+            ItemMeta meta = inHand.getItemMeta();
+            meta.setDisplayName(meta.getDisplayName().substring(0, 100));
+            inHand.setItemMeta(meta);
+        }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInteract2(PlayerInteractEvent e)
+    {
+        Player player = e.getPlayer();
+        Action action = e.getAction();
+        ItemStack inHand = player.getItemInHand();
+        Block block = null; 
+        if(action.equals(Action.RIGHT_CLICK_BLOCK)||action.equals(Action.LEFT_CLICK_BLOCK)) 
+        {
+            block = e.getClickedBlock();
+        }
+        
+        // Psuedo-Block crash blocks
+        if(action.equals(Action.RIGHT_CLICK_BLOCK) && inHand != null && inHand.getType() != Material.AIR)
+        {
+            if(!inHand.getType().isBlock()) return;
+            if(!isActivated("crashblocks"))
+            {
+                return;
+            }
+            if(!Data.itemDataTable.containsKey(inHand.getTypeId()))
+            {
+                return;
+            }
+            if(inHand.getDurability() > Data.itemDataTable.get(inHand.getTypeId()))
+            {
+                inHand.setDurability(Data.itemDataTable.get(inHand.getTypeId()));
+                return;
+            }
+        }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInteract3(PlayerInteractEvent e)
+    {
+        Player player = e.getPlayer();
+        Action action = e.getAction();
+        ItemStack inHand = player.getItemInHand();
+        Block block = null; 
+        if(action.equals(Action.RIGHT_CLICK_BLOCK)||action.equals(Action.LEFT_CLICK_BLOCK)) 
+        {
+            block = e.getClickedBlock();
+        }
+        
+        // Block sign exploits
+        if(action.equals(Action.RIGHT_CLICK_BLOCK) && block != null)
+        {
+            if(!isActivated("signs"))
+            {
+                return;
+            }
+            if(block.getType() == Material.SIGN_POST||block.getType() == Material.WALL_SIGN)
+            {
+                e.setCancelled(true);
+                return;
+            }
+        }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInteract4(PlayerInteractEvent e)
+    {
+        Player player = e.getPlayer();
+        Action action = e.getAction();
+        ItemStack inHand = player.getItemInHand();
+        Block block = null; 
+        if(action.equals(Action.RIGHT_CLICK_BLOCK)||action.equals(Action.LEFT_CLICK_BLOCK)) 
+        {
+            block = e.getClickedBlock();
+        }
+        
+        // Block lever spamming
+        if(action.equals(Action.RIGHT_CLICK_BLOCK) && block != null)
+        {
+            if(!isActivated("levers"))
+            {
+                return;
+            }
+            if(block.getType() == Material.LEVER)
+            {
+                if(plugin.leverPlayers.contains(player))
+                {
+                    e.setCancelled(true);
+                    return;
+                }
+                else
+                {
+                    plugin.leverPlayers.add(player);
+
+                    (new BukkitRunnable() 
+                    {
+                        @Override
+                        public void run() 
+                        {
+                            plugin.leverPlayers.remove(player);
+                        }
+                    }).runTaskLater(plugin, 3L);
+                }
+            }
+        }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInteract5(PlayerInteractEvent e)
+    {
+        Player player = e.getPlayer();
+        Action action = e.getAction();
+        ItemStack inHand = player.getItemInHand();
+        Block block = null; 
+        if(action.equals(Action.RIGHT_CLICK_BLOCK)||action.equals(Action.LEFT_CLICK_BLOCK)) 
+        {
+            block = e.getClickedBlock();
+        }
+        
+        // Block book exploits
+        if(action.equals(Action.RIGHT_CLICK_AIR)||action.equals(Action.RIGHT_CLICK_BLOCK))
+        {
+            if(!isActivated("stripBookJSON"))
+            {
+                return;
+            }
+            if(inHand.getType() == Material.WRITTEN_BOOK)
+            {
+                BookMeta meta = (BookMeta)inHand.getItemMeta();
+                if(meta.hasLore())
+                {
+                    for(String lore : meta.getLore())
+                    {
+                        if(lore.contains("verified"))
+                        {
+                            inHand.setItemMeta(meta);
+                            return;
+                        }
+                    }
+                }
+                
+                meta.setPages(meta.getPages());
+                System.out.println(player.getName() + " opened book: " + meta.getPages().toString());
+                player.sendMessage(ChatColor.GRAY + "Book JSON has been removed, book is now safe.");
+                player.sendMessage(ChatColor.GRAY + "Please open the book once again.");
+                meta.setLore(Arrays.asList(ChatColor.GREEN + "verified"));
+                inHand.setItemMeta(meta);
+                e.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onInteract6(PlayerInteractEvent e)
     {
         List<Integer> discs = Arrays.asList(
         2256,
@@ -59,49 +225,6 @@ public class PluginListener implements Listener
         if(action.equals(Action.RIGHT_CLICK_BLOCK)||action.equals(Action.LEFT_CLICK_BLOCK)) 
         {
             block = e.getClickedBlock();
-        }
-        
-        // Block crash mobs
-        if(inHand != null && inHand.hasItemMeta() && inHand.getItemMeta().hasDisplayName() && inHand.getItemMeta().getDisplayName().length() > 100)
-        {
-            if(!isActivated("mobnames"))
-            {
-                return;
-            }
-            ItemMeta meta = inHand.getItemMeta();
-            meta.setDisplayName(meta.getDisplayName().substring(0, 100));
-            inHand.setItemMeta(meta);
-        }
-        
-        
-        // Psuedo-Block crash blocks
-        if(action.equals(Action.RIGHT_CLICK_BLOCK) && inHand != null && inHand.getType() != Material.AIR)
-        {
-            if(!inHand.getType().isBlock()) return;
-            if(!isActivated("crashblocks"))
-            {
-                return;
-            }
-            if(inHand.getDurability() > Data.itemDataTable.get(inHand.getTypeId()))
-            {
-                inHand.setDurability(Data.itemDataTable.get(inHand.getTypeId()));
-                return;
-            }
-        }
-        
-        
-        // Block sign exploits
-        if(action.equals(Action.RIGHT_CLICK_BLOCK) && block != null)
-        {
-            if(!isActivated("signs"))
-            {
-                return;
-            }
-            if(block.getType() == Material.SIGN_POST||block.getType() == Material.WALL_SIGN)
-            {
-                e.setCancelled(true);
-                return;
-            }
         }
         
         
@@ -135,58 +258,6 @@ public class PluginListener implements Listener
                             }
                         }).runTaskLater(plugin, 20*1L);
                     }
-                }
-            }
-        }
-        
-        // Block lever spamming
-        if(action.equals(Action.RIGHT_CLICK_BLOCK) && block != null)
-        {
-            if(!isActivated("levers"))
-            {
-                return;
-            }
-            if(block.getType() == Material.LEVER)
-            {
-                if(plugin.leverPlayers.contains(player))
-                {
-                    e.setCancelled(true);
-                    return;
-                }
-                else
-                {
-                    plugin.leverPlayers.add(player);
-
-                    (new BukkitRunnable() 
-                    {
-                        @Override
-                        public void run() 
-                        {
-                            plugin.leverPlayers.remove(player);
-                        }
-                    }).runTaskLater(plugin, 3L);
-                }
-            }
-        }
-        
-        
-        // Block book exploits
-        if(action.equals(Action.RIGHT_CLICK_AIR))
-        {
-            if(!isActivated("stripBookJSON"))
-            {
-                return;
-            }
-            if(inHand.getType() == Material.WRITTEN_BOOK)
-            {
-                BookMeta meta = (BookMeta)inHand.getItemMeta();
-                meta.setPages(meta.getPages());
-                inHand.setItemMeta(meta);
-                if(meta.getPages().contains("{"))
-                {
-                    System.out.println("Warning: " + player + " opened a potentially harmful book!");
-                    System.out.println("Warning: The book's json has been removed but it could still be harmful.");
-                    System.out.println(meta.getPages().toString());
                 }
             }
         }
@@ -253,7 +324,12 @@ public class PluginListener implements Listener
         Player player = e.getPlayer();
         ItemStack inHand = player.getInventory().getItem(e.getNewSlot());
         if(inHand == null) return;
+        if(inHand.getType() == Material.AIR) return;
         
+        if(!Data.itemDataTable.containsKey(inHand.getTypeId()))
+        {
+            return;
+        }
         if(inHand.getDurability() > Data.itemDataTable.get(inHand.getTypeId()))
         {
             inHand.setDurability((short) (Data.itemDataTable.get(inHand.getTypeId())));
