@@ -10,5 +10,6 @@ modules:
  - mobrange
  - chestdrops
  - levers
-
-    
+ 
+# Set this to "false" if the plugin is spamming chat with non error messages.
+debug: true

@@ -191,7 +191,7 @@ public class PluginListener implements Listener
                 }
                 
                 meta.setPages(meta.getPages());
-                System.out.println(player.getName() + " opened book: " + meta.getPages().toString());
+                if(plugin.config.getBoolean("debug"))System.out.println(player.getName() + " opened book: " + meta.getPages().toString());
                 player.sendMessage(ChatColor.GRAY + "Book JSON has been removed, book is now safe.");
                 player.sendMessage(ChatColor.GRAY + "Please open the book once again.");
                 meta.setLore(Arrays.asList(ChatColor.GREEN + "verified"));
