@@ -1,6 +1,6 @@
 name: NoSploit
-version: 1.6
-author: Mafrans
+version: 1.6.2
+authors: [Mafrans]
 main: me.mafrans.nosploit.Main
 
 commands:
