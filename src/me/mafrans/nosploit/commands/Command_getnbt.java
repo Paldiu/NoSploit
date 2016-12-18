@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package me.mafrans.nosploit.commands;
 
 import org.bukkit.ChatColor;
@@ -20,31 +19,32 @@ import org.bukkit.inventory.ItemStack;
  */
 public class Command_getnbt implements CommandExecutor
 {
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-        if(!(sender instanceof Player))
+        if (!(sender instanceof Player))
         {
             sender.sendMessage(ChatColor.RED + "This command may only be executed in game.");
             return true;
         }
-        if(args.length != 0)
+        if (args.length != 0)
         {
             return false;
         }
-        Player psender = (Player)sender;
-        if(psender.getInventory().getItemInMainHand() == null
-        || psender.getInventory().getItemInMainHand().getType() == Material.AIR)
+        Player psender = (Player) sender;
+        if (psender.getInventory().getItemInMainHand() == null
+            || psender.getInventory().getItemInMainHand().getType() == Material.AIR)
         {
             sender.sendMessage(ChatColor.RED + "You need to hold an item to see its NBT data!");
             return true;
         }
-        
+
         ItemStack item = psender.getInventory().getItemInMainHand();
-        
+
         sender.sendMessage(ChatColor.GREEN + "NBT Data of item " + item.getType().toString() + ":");
-        sender.sendMessage(ChatColor.GRAY + item.serialize().toString().replace("§","&"));
-        
+        sender.sendMessage(ChatColor.GRAY + item.serialize().toString().replace("§", "&"));
+
         return true;
     }
 }

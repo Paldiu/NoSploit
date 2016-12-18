@@ -1,4 +1,10 @@
 name: NoSploit
-version: 1.4
+version: 1.6
 author: Mafrans
 main: me.mafrans.nosploit.Main
+
+commands:
+    getnbt:
+        description: Gets the nbt of an item.
+        usage: /<command>
+        aliases: nbt
