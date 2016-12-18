@@ -1,0 +1,15 @@
+# Installed modules, comment (#) a module to disable it.
+modules:
+ - signs
+ - stripBookJSON
+ - jukeboxes
+ - chestcontents
+ - safehotbar
+ - crashblocks
+ - mobnames
+ - mobrange
+ - chestdrops
+ - levers
+ 
+# Set this to "false" if the plugin is spamming chat with non error messages.
+debug: true
