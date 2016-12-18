@@ -39,8 +39,7 @@ public class EntityData {
             entities.add(EntityType.CHICKEN);
             entities.add(EntityType.COW);
             entities.add(EntityType.CREEPER);
-            entities.add(EntityType.DONKEY);
-            entities.add(EntityType.ELDER_GUARDIAN);
+            //entities.add(EntityType.DONKEY);    instance of horse
             entities.add(EntityType.ENDERMAN);
             entities.add(EntityType.ENDERMITE);
             entities.add(EntityType.ENDER_DRAGON);
@@ -48,10 +47,10 @@ public class EntityData {
             entities.add(EntityType.GIANT);
             entities.add(EntityType.GUARDIAN);
             entities.add(EntityType.HORSE);
-            entities.add(EntityType.HUSK);
+            //entities.add(EntityType.HUSK);    unimplemented, maybe an error on Bukkit/Spigot's side?
             entities.add(EntityType.IRON_GOLEM);
             entities.add(EntityType.MAGMA_CUBE);
-            entities.add(EntityType.MULE);
+            //entities.add(EntityType.MULE);    instance of horse
             entities.add(EntityType.MUSHROOM_COW);
             entities.add(EntityType.OCELOT);
             entities.add(EntityType.PIG);
@@ -63,20 +62,21 @@ public class EntityData {
             entities.add(EntityType.SHULKER);
             entities.add(EntityType.SILVERFISH);
             entities.add(EntityType.SKELETON);
-            entities.add(EntityType.SKELETON_HORSE);
+            //entities.add(EntityType.SKELETON_HORSE);    instance of horse
             entities.add(EntityType.SLIME);
             entities.add(EntityType.SNOWMAN);
             entities.add(EntityType.SPIDER);
             entities.add(EntityType.SQUID);
-            entities.add(EntityType.STRAY);
+            //entities.add(EntityType.STRAY);    unimplemented, maybe an error on Bukkit/Spigot's side?
             entities.add(EntityType.VILLAGER);
             entities.add(EntityType.WITCH);
             entities.add(EntityType.WITHER);
-            entities.add(EntityType.WITHER_SKELETON);
+            //entities.add(EntityType.WITHER_SKELETON);    instance of skeleton
             entities.add(EntityType.WOLF);
             entities.add(EntityType.ZOMBIE);
-            entities.add(EntityType.ZOMBIE_HORSE);
-            entities.add(EntityType.ZOMBIE_VILLAGER);
+            //entities.add(EntityType.ZOMBIE_HORSE);    instance of horse
+            //entities.add(EntityType.ZOMBIE_VILLAGER);    instance of zombie
+            
             /**
              * Waiting for 1.11 to implement these;
              */
@@ -88,11 +88,11 @@ public class EntityData {
         
         //Other attributable entities as classes
         {
-            allOtherEntities.add(AbstractHorse.class.asSubclass(ATT));
+            //allOtherEntities.add(AbstractHorse.class.asSubclass(ATT));    unimplemented, maybe it doesnt exist?
             allOtherEntities.add(Ageable.class.asSubclass(ATT));
             allOtherEntities.add(Ambient.class.asSubclass(ATT));
             allOtherEntities.add(Animals.class.asSubclass(ATT));
-            allOtherEntities.add(ChestedHorse.class.asSubclass(ATT));
+            //allOtherEntities.add(ChestedHorse.class.asSubclass(ATT));    unimplemented, maybe it doesnt exist?
             allOtherEntities.add(ComplexLivingEntity.class.asSubclass(ATT));
             allOtherEntities.add(Creature.class.asSubclass(ATT));
             allOtherEntities.add(Flying.class.asSubclass(ATT));
