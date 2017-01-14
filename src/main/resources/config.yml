@@ -3,13 +3,12 @@ modules:
  - signs
  - stripBookJSON
  - jukeboxes
- - chestcontents
+ - chests
  - safehotbar
  - crashblocks
- - mobnames
- - mobrange
- - chestdrops
+ - mobs
  - levers
+ - spawners
  
 # Set this to "false" if the plugin is spamming chat with non error messages.
 debug: true

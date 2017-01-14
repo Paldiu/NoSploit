@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  *
  * @author Mafrans
@@ -23,14 +22,12 @@ package me.mafrans.nosploit;
 import java.util.ArrayList;
 import java.util.List;
 import me.mafrans.nosploit.commands.Command_getnbt;
-import me.mafrans.nosploit.listeners.PluginListener;
 import org.bukkit.Server;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin
-{
+public class Main extends JavaPlugin {
 
     public static Main plugin;
     public static String pName;
@@ -44,33 +41,32 @@ public class Main extends JavaPlugin
     @Override
     public void onLoad() {
         plugin = this;
-        
+
         pName = this.getDescription().getName();
         pVersion = this.getDescription().getVersion();
         pAuthors = this.getDescription().getAuthors();
     }
-    
+
     @Override
     public void onEnable() {
-        config = this.getConfig();
-        server = this.getServer();
+        config = getConfig();
+        server = getServer();
         jukeboxPlayers = new ArrayList();
         leverPlayers = new ArrayList();
 
-        plugin.saveDefaultConfig();
         Data.registerData();
         EntityData.registerData();
-
-        server.getPluginManager().registerEvents(new PluginListener(), plugin);
+        plugin.saveDefaultConfig();
+        Listeners.registerListeners(server.getPluginManager());
 
         plugin.getCommand("getnbt").setExecutor(new Command_getnbt());
-        
-        NLogger.info(String.format("[%s] version %s by %s has been enabled!", 
-                pName, 
-                pVersion, 
-                pAuthors.toString()));
+
+        NLogger.info(String.format("[%s] version %s by %s has been enabled!",
+                                   pName,
+                                   pVersion,
+                                   pAuthors.toString()));
     }
-    
+
     @Override
     public void onDisable() {
         NLogger.info(pName + " has been disabled!");

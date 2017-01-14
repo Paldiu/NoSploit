@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
- * 
+ *
  * @author Paldiu
  */
 package me.mafrans.nosploit;
@@ -24,62 +23,60 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class NLogger {
-    
+
     public static final Logger BACKUP = Logger.getLogger("Minecraft-Server");
     public static Logger pLogger = null;
     public static Logger sLogger = null;
-    
+
     private NLogger() {
         throw new AssertionError();
     }
-    
+
     // Logging level @ info
     public static void info(String message) {
         info(message, false);
     }
-    
+
     public static void info(String message, Boolean raw) {
         log(Level.INFO, message, raw);
     }
-    
+
     public static void info(Throwable ex) {
         log(Level.INFO, ex);
     }
-    
+
     //Logging level @ warning
     public static void warning(String message) {
         warning(message, false);
     }
-    
+
     public static void warning(String message, Boolean raw) {
         log(Level.WARNING, message, raw);
     }
-    
+
     public static void warning(Throwable ex) {
         log(Level.WARNING, ex);
     }
-    
+
     // Logging level @ Severe
     public static void severe(String message) {
         severe(message, false);
     }
-    
+
     public static void severe(String message, Boolean raw) {
         log(Level.SEVERE, message, raw);
     }
-    
+
     public static void severe(Throwable ex) {
         log(Level.SEVERE, ex);
     }
-    
+
     // Utilities
-    private static void log(Level level, String message, boolean raw)
-    {
+    private static void log(Level level, String message, boolean raw) {
         getLogger(raw).log(level, message);
     }
 
-    private static void log(Level level, Throwable throwable)
-    {
+    private static void log(Level level, Throwable throwable) {
         getLogger(false).log(level, null, throwable);
     }
 

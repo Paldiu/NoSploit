@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 /**
  *
  * @author Paldiu
@@ -26,9 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntityData {
+
     public static List<EntityType> entities = new ArrayList<>();
     public static List<Class<?>> allOtherEntities = new ArrayList<>();
     private static final Class<?> ATT = Attributable.class;
+
     public static void registerData() {
         //register all entity types
         {
@@ -76,7 +77,7 @@ public class EntityData {
             entities.add(EntityType.ZOMBIE);
             //entities.add(EntityType.ZOMBIE_HORSE);    instance of horse
             //entities.add(EntityType.ZOMBIE_VILLAGER);    instance of zombie
-            
+
             /**
              * Waiting for 1.11 to implement these;
              */
@@ -85,7 +86,7 @@ public class EntityData {
             //entities.add(EntityType.LLAMA);
             //entities.add(EntityType.VINDICATOR);
         }
-        
+
         //Other attributable entities as classes
         {
             //allOtherEntities.add(AbstractHorse.class.asSubclass(ATT));    unimplemented, maybe it doesnt exist?
@@ -105,4 +106,3 @@ public class EntityData {
         }
     }
 }
-
