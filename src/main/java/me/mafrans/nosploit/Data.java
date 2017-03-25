@@ -22,6 +22,7 @@ package me.mafrans.nosploit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
@@ -31,8 +32,22 @@ public class Data {
     public static List<ItemStack> bookcd = new ArrayList();
     public static HashMap<Integer, Short> itemDataTable = new HashMap();
     public static List<EntityType> nonLivingEntities = new ArrayList();
+    public static HashMap<Attribute, Double[]> attributes = new HashMap();
 
-    public static void registerData() {
+    public static void registerData() 
+    {
+        // Attributes
+        {
+            attributes.put(Attribute.GENERIC_ARMOR, new Double[] {0.0, 100.0});
+            attributes.put(Attribute.GENERIC_ATTACK_DAMAGE, new Double[] {0.0, 32767.0});
+            attributes.put(Attribute.GENERIC_ATTACK_SPEED, new Double[] {0.0, 32767.0});
+            attributes.put(Attribute.GENERIC_FOLLOW_RANGE, new Double[] {0.0, 255.0});
+            attributes.put(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new Double[] {0.0, 1.0});
+            attributes.put(Attribute.GENERIC_LUCK, new Double[] {0.0, 32767.0});
+            attributes.put(Attribute.GENERIC_MAX_HEALTH, new Double[] {1.0, 255.0});
+            attributes.put(Attribute.GENERIC_MOVEMENT_SPEED, new Double[] {0.0, 5.0});
+        }
+        
         // Non Living Entities
         {
             nonLivingEntities.add(EntityType.PLAYER);

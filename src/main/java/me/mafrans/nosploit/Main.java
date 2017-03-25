@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
     public FileConfiguration config;
     public Server server;
     public List<Player> jukeboxPlayers;
-    public List<Player> leverPlayers;
+    public List<Player> cooldownPlayers;
 
     @Override
     public void onLoad() {
@@ -52,7 +52,7 @@ public class Main extends JavaPlugin {
         config = getConfig();
         server = getServer();
         jukeboxPlayers = new ArrayList();
-        leverPlayers = new ArrayList();
+        cooldownPlayers = new ArrayList();
 
         Data.registerData();
         EntityData.registerData();
