@@ -14,3 +14,4 @@ NoSploit is a plugin for patching exploits in Free-OP servers, it was created by
 * Long mob names crashing clients.
 * Mobs with long follow range crashing servers.
 * Levers causing graphical gliches and crashing clients.
+* Daylight sensors causing lag on a server due to rapid activation and deactivation of redstone.
