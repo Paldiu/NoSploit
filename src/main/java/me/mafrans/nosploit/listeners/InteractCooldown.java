@@ -35,7 +35,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class InteractCooldown implements Listener {
 
     private final Main plugin = Main.plugin;
-    private final long cooldown = 5L;
+    private final long cooldown = 3L;
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void cooldownPatch(PlayerInteractEvent e) {
@@ -49,7 +49,7 @@ public class InteractCooldown implements Listener {
             block = e.getClickedBlock();
         }
 
-        // Block lever spamming
+        // Block interaction spamming
         if (action.equals(Action.RIGHT_CLICK_BLOCK) && block != null) {
             if (blocks.contains(block.getType())) {
                 if (plugin.cooldownPlayers.contains(player)) {

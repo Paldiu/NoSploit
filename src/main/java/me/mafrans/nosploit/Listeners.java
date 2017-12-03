@@ -31,7 +31,7 @@ public enum Listeners {
     CRASHBLOCK(new CrashblockPatch(), "crashblocks"),
     HOTBAR(new HotbarPatch(), "safehotbar"),
     JUKEBOX(new JukeboxPatch(), "jukeboxes"),
-    LEVER(new InteractCooldown(), "interactcooldown"),
+    INTERACT(new InteractCooldown(), "interact"),
     MOB(new MobPatch(), "mobs"),
     SIGN(new SignPatch(), "signs"),
     SPAWNER(new SpawnerPatch(), "spawners");

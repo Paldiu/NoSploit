@@ -90,6 +90,7 @@ public class Data {
             nonLivingEntities.add(EntityType.UNKNOWN);
             nonLivingEntities.add(EntityType.WEATHER);
             nonLivingEntities.add(EntityType.WITHER_SKULL);
+            nonLivingEntities.add(EntityType.EVOKER_FANGS);
         }
 
         // Item Data Table
@@ -175,6 +176,9 @@ public class Data {
             itemDataTable.put(214, (short) 0);
             itemDataTable.put(215, (short) 0);
             itemDataTable.put(216, (short) 0);
+            itemDataTable.put(235, (short) 15);
+            itemDataTable.put(251, (short) 15);
+            itemDataTable.put(252, (short) 15);
 
             // Decorative
             itemDataTable.put(6, (short) 5);
@@ -218,6 +222,22 @@ public class Data {
             itemDataTable.put(198, (short) 15);
             itemDataTable.put(199, (short) 0);
             itemDataTable.put(200, (short) 0);
+            itemDataTable.put(219, (short) 15);
+            itemDataTable.put(220, (short) 15);
+            itemDataTable.put(221, (short) 15);
+            itemDataTable.put(222, (short) 15);
+            itemDataTable.put(223, (short) 15);
+            itemDataTable.put(224, (short) 15);
+            itemDataTable.put(225, (short) 15);
+            itemDataTable.put(226, (short) 15);
+            itemDataTable.put(227, (short) 15);
+            itemDataTable.put(228, (short) 15);
+            itemDataTable.put(229, (short) 15);
+            itemDataTable.put(230, (short) 15);
+            itemDataTable.put(231, (short) 15);
+            itemDataTable.put(232, (short) 15);
+            itemDataTable.put(233, (short) 15);
+            itemDataTable.put(234, (short) 15);
             itemDataTable.put(321, (short) 0);
             itemDataTable.put(323, (short) 0);
             itemDataTable.put(355, (short) 0);
@@ -282,6 +302,7 @@ public class Data {
             itemDataTable.put(429, (short) 0);
             itemDataTable.put(430, (short) 0);
             itemDataTable.put(431, (short) 0);
+            itemDataTable.put(218, (short) 15);
 
             // Transportation
             itemDataTable.put(27, (short) 15);
@@ -327,6 +348,9 @@ public class Data {
             itemDataTable.put(417, (short) 0);
             itemDataTable.put(418, (short) 0);
             itemDataTable.put(419, (short) 0);
+            itemDataTable.put(450, (short) 0);
+            itemDataTable.put(452, (short) 0);
+            itemDataTable.put(453, (short) 0);
             itemDataTable.put(2256, (short) 0);
             itemDataTable.put(2257, (short) 0);
             itemDataTable.put(2258, (short) 0);
@@ -431,6 +455,7 @@ public class Data {
             itemDataTable.put(439, (short) 0);
             itemDataTable.put(440, (short) 0);
             itemDataTable.put(442, (short) 0);
+            itemDataTable.put(449, (short) 0);
 
             // Brewing
             itemDataTable.put(370, (short) 0);
