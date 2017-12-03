@@ -8,7 +8,7 @@ modules:
  - crashblocks
  - mobs
  - interact
- - spawners
+# - spawners # Only use for 1.10.x and below
  
 # Set this to "false" if the plugin is spamming chat with non error messages.
-debug: true
+debug: false

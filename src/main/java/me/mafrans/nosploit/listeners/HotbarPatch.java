@@ -50,19 +50,17 @@ public class HotbarPatch implements Listener {
         if (!Data.itemDataTable.containsKey(inHand.getTypeId())) {
             return;
         }
-        
-        for(Attribute attr : Data.attributes.keySet())
-        {
-            if(((Attributable)inHand).getAttribute(attr).getBaseValue() < Data.attributes.get(attr)[0])
-            {
-                ((Attributable)inHand).getAttribute(attr).setBaseValue(Data.attributes.get(attr)[0]);
-            }
-            else if(((Attributable)inHand).getAttribute(attr).getBaseValue() > Data.attributes.get(attr)[1])
-            {
-                ((Attributable)inHand).getAttribute(attr).setBaseValue(Data.attributes.get(attr)[1]);
+
+        if(inHand instanceof Attributable) {
+            for (Attribute attr : Data.attributes.keySet()) {
+                if (((Attributable) inHand).getAttribute(attr).getBaseValue() < Data.attributes.get(attr)[0]) {
+                    ((Attributable) inHand).getAttribute(attr).setBaseValue(Data.attributes.get(attr)[0]);
+                } else if (((Attributable) inHand).getAttribute(attr).getBaseValue() > Data.attributes.get(attr)[1]) {
+                    ((Attributable) inHand).getAttribute(attr).setBaseValue(Data.attributes.get(attr)[1]);
+                }
             }
         }
-        
+
         if (inHand.getDurability() > Data.itemDataTable.get(inHand.getTypeId())) {
             inHand.setDurability((short) (Data.itemDataTable.get(inHand.getTypeId())));
         }

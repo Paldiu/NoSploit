@@ -35,6 +35,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
  *
  * @author Mafrans
  */
+@Deprecated
 public class SpawnerPatch implements Listener {
 
     private final Main plugin = Main.plugin;

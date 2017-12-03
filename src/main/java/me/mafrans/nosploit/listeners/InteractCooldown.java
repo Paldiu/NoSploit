@@ -1,7 +1,10 @@
 package me.mafrans.nosploit.listeners;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import me.mafrans.nosploit.Main;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -35,12 +38,17 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class InteractCooldown implements Listener {
 
     private final Main plugin = Main.plugin;
-    private final long cooldown = 3L;
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void cooldownPatch(PlayerInteractEvent e) {
         
-        List<Material> blocks = Arrays.asList(Material.LEVER);
+        Map<Material, Long> blocks = new HashMap();
+        blocks.put(Material.LEVER, 3L);
+        blocks.put(Material.DAYLIGHT_DETECTOR, 10L);
+        blocks.put(Material.DAYLIGHT_DETECTOR_INVERTED, 10L);
+        blocks.put(Material.REDSTONE_COMPARATOR, 5L);
+        blocks.put(Material.REDSTONE_COMPARATOR_OFF, 5L);
+        blocks.put(Material.REDSTONE_COMPARATOR_ON, 5L);
         
         final Player player = e.getPlayer();
         Action action = e.getAction();
@@ -51,7 +59,7 @@ public class InteractCooldown implements Listener {
 
         // Block interaction spamming
         if (action.equals(Action.RIGHT_CLICK_BLOCK) && block != null) {
-            if (blocks.contains(block.getType())) {
+            if (blocks.containsKey(block.getType())) {
                 if (plugin.cooldownPlayers.contains(player)) {
                     e.setCancelled(true);
                 }
@@ -63,7 +71,7 @@ public class InteractCooldown implements Listener {
                         public void run() {
                             plugin.cooldownPlayers.remove(player);
                         }
-                    }).runTaskLater(plugin, cooldown);
+                    }).runTaskLater(plugin, blocks.get(block.getType()));
                 }
             }
         }

@@ -33,8 +33,8 @@ public enum Listeners {
     JUKEBOX(new JukeboxPatch(), "jukeboxes"),
     INTERACT(new InteractCooldown(), "interact"),
     MOB(new MobPatch(), "mobs"),
-    SIGN(new SignPatch(), "signs"),
-    SPAWNER(new SpawnerPatch(), "spawners");
+    //SPAWNER(new SpawnerPatch(), "spawners"),  // 1.10.x only
+    SIGN(new SignPatch(), "signs");
 
     Listeners(Listener executor, String configEntry) {
         this.executor = executor;
