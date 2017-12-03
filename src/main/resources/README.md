@@ -3,7 +3,7 @@
 NoSploit is a plugin for patching exploits in Free-OP servers, it was created by Mafrans with help from the community over at http://totalfreedom.boards.net.
 
 **Current Features:**
-* Fully stable in both 1.10 and 1.11 minecraft server environments provided you use the correct jar. 
+* Fully stable in 1.10, 1.11 and 1.12 minecraft server environments provided you use the correct jar.
 * Allows logging the nbt data of an item.
 
 **Current exploits patched:**
